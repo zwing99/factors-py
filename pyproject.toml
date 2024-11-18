@@ -1,0 +1,30 @@
+[build-system]
+build-backend = "maturin"
+requires = ["maturin>=1.7,<2.0"]
+
+[project]
+classifiers = [
+  "Programming Language :: Rust",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+dynamic = ["version"]
+name = "factors-py"
+requires-python = ">=3.8"
+[tool.maturin]
+features = ["pyo3/extension-module"]
+
+[dependency-groups]
+dev = [
+  "ipython>=8.12.3",
+  "pytest>=8.3.3",
+  "ruff>=0.7.4",
+]
+
+[tool.uv]
+cache-keys = [{file = "pyproject.toml"}, {file = "requirements.txt"}, {git = {commit = true}}, {file = "Cargo.toml"}, {file = "**/*.rs"}]
+#reinstall-package = ["factors-py"]
+
+[tool.pytest.ini_options]
+addopts = "-v tests"
